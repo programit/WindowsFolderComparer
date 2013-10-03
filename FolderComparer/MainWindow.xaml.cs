@@ -77,6 +77,19 @@ namespace FolderComparer
             {
                 if(!list2.Contains(item))  {
                     Console.WriteLine("Different Left: " + item);
+                    var image = new System.Windows.Controls.Image();
+                    BitmapImage bitmap = new BitmapImage(new Uri(@"C:\Users\John\Documents\GitHub\WindowsFolderComparer\FolderComparer\Media-Different.png", UriKind.Relative));
+                    var label = new System.Windows.Controls.Label();
+                    label.Content = item;
+                    image.Source = bitmap;
+                    Grid.SetColumn(image, 0);
+                    Grid.SetColumn(label, 1);
+                    var rowDef = new RowDefinition();
+                    this.gridLeft.RowDefinitions.Add(rowDef);
+                    Grid.SetRow(image, this.gridLeft.RowDefinitions.Count - 1);
+                    Grid.SetRow(label, this.gridLeft.RowDefinitions.Count - 1);
+                    this.gridLeft.Children.Add(image);
+                    this.gridLeft.Children.Add(label);
                     diffList.Add(item);
                 }
                 else
