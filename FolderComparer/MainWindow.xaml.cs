@@ -33,25 +33,19 @@ namespace FolderComparer
         private void btnRightClick(object sender, RoutedEventArgs e)
         {
             string path = this.ShowDialog();
-            this.UpdateLabelPath(this.lblRight, path);
+            this.UpdateLabelPath(this.tbRight, path);
         }
 
         private void btnLeftClick(object sender, RoutedEventArgs e)
         {
             string path = this.ShowDialog();
-            this.UpdateLabelPath(this.lblLeft, path);            
+            this.UpdateLabelPath(this.tbLeft, path);            
         }
 
-        private void UpdateLabelPath(System.Windows.Controls.Label l, string path)
+        private void UpdateLabelPath(System.Windows.Controls.TextBox l, string path)
         {
             l.Visibility = System.Windows.Visibility.Visible;
-            l.Content = path;
-            if (lblLeft.Visibility == System.Windows.Visibility.Visible && lblRight.Visibility == System.Windows.Visibility.Visible)
-            {
-                base1 = lblLeft.Content.ToString();
-                base2 = lblRight.Content.ToString();
-                this.Compare(lblLeft.Content.ToString(), lblRight.Content.ToString());
-            }
+            l.Text = path;            
         }
 
         private void Compare(string path1, string path2)
