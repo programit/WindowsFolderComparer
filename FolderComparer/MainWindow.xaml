@@ -3,23 +3,48 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="423" Width="832">
     <Grid Background="#FF444444">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Label Content="Left Folder" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Stretch" Width="70" Background="#FF444444"/>
-            <Button x:Name="btnLeft" Content="Left Path" HorizontalAlignment="Right" Margin="0,36,0,0" Width="61" Click="btnLeftClick" Height="24" VerticalAlignment="Top" Background="#FFAEC6AE"/>
-            <TextBox x:Name="tbLeft" Height="23" Margin="10,37,72,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Background="#FF676767" Foreground="#FFD1D1D1" BorderBrush="#FF434343" RenderTransformOrigin="0,0" Style="{DynamicResource TextBoxStyle1}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" >
+                <Label Content="Left Folder" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Stretch" Width="70" Background="#FF444444" Foreground="#FFD1D1D1"/>
+                <Button x:Name="btnLeft" Content="Left Path" HorizontalAlignment="Right" Margin="0,36,0,0" Width="61" Click="btnLeftClick" Height="24" VerticalAlignment="Top" Background="#FFAEC6AE"/>
+                <TextBox x:Name="tbLeft" Height="23" Margin="10,37,72,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="#FF676767" Foreground="#FFD1D1D1" BorderBrush="#FF434343" RenderTransformOrigin="0,0" Style="{DynamicResource TextBoxStyle1}"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <GridSplitter HorizontalAlignment="Stretch" MaxWidth="5" Background="#FF262626"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Label Content="Right Folder" Margin="0,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,-4.692" HorizontalAlignment="Center" Width="84" Foreground="#FFD1D1D1"/>
+                <Button x:Name="btnRight" Content="Right Path" Margin="0,36,10,0" Click="btnRightClick" HorizontalAlignment="Right" Width="65" Height="24" VerticalAlignment="Top" Background="#FFB5CDB3"/>
+                <TextBox x:Name="tbRight" Height="23" Margin="0,37,82,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="#FF676767" Foreground="#FFD1D1D1" BorderBrush="#FF434343" RenderTransformOrigin="0,0" Style="{DynamicResource TextBoxStyle1}"/>
+            </Grid>
         </Grid>
-        <Grid Grid.Column="1">
-            <GridSplitter HorizontalAlignment="Stretch" MaxWidth="5" Background="#FF262626"/>
-        </Grid>
-        <Grid Grid.Column="2">
-            <Label Content="Right Folder" Margin="0,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,-4.692" HorizontalAlignment="Center" Width="84"/>
-            <Button x:Name="btnRight" Content="Right Path" Margin="0,36,10,0" Click="btnRightClick" HorizontalAlignment="Right" Width="65" Height="24" VerticalAlignment="Top" Background="#FFB5CDB3"/>
-            <TextBox x:Name="tbRight" Height="23" Margin="0,37,82,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Background="#FF676767" Foreground="#FFD1D1D1" BorderBrush="#FF434343" RenderTransformOrigin="0,0" Style="{DynamicResource TextBoxStyle1}"/>
-        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1,1,0,2" Background="#FF2C2424">
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Width="38">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Logout.png"/>
+                    </Button.Background>
+                </Button>
+                <Button Content="" Width="38" Margin="1,0,0,0">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Save.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="btnRun" Content="" Width="38" Margin="1,0,0,0" Click="btnRun_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Media-Play.png"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

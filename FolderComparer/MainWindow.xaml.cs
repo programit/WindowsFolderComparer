@@ -76,8 +76,8 @@ namespace FolderComparer
             foreach (var item in list1)
             {
                 if(!list2.Contains(item))  {
-                    //Console.WriteLine("Different Left: " + item);
-                    //diffList.Add(item);
+                    Console.WriteLine("Different Left: " + item);
+                    diffList.Add(item);
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace FolderComparer
                     }
                 }
             }
-
+            
             foreach (var item in list2)
             {
                 if (!list1.Contains(item))
@@ -112,6 +112,13 @@ namespace FolderComparer
             {
                 return null;
             }
+        }
+
+        private void btnRun_Click(object sender, RoutedEventArgs e)
+        {
+            base1 = this.tbLeft.Text;
+            base2 = this.tbRight.Text;
+            Compare(this.tbLeft.Text, this.tbRight.Text);
         }
     }
 }
