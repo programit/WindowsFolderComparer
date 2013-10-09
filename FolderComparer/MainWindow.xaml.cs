@@ -44,8 +44,10 @@ namespace FolderComparer
 
         private void UpdateLabelPath(System.Windows.Controls.TextBox l, string path)
         {
-            l.Visibility = System.Windows.Visibility.Visible;
-            l.Text = path;            
+            if (path != null)
+            {
+                l.Text = path;
+            }
         }
 
         private void Compare(string path1, string path2)
@@ -57,11 +59,10 @@ namespace FolderComparer
             string[] dirs1 = Directory.GetDirectories(path1);
             string[] dirs2 = Directory.GetDirectories(path2);
             this.CompareItems(dirs1, dirs2, true);
-        }        
+        }
 
         private void CompareItems(string[] items1, string[] items2, bool dirs = false)
         {
-            List<string> diffs = new List<string>();
             List<string> list1 = new List<string>();
             List<string> list2 = new List<string>();
             foreach(string file in items1) {
@@ -77,20 +78,11 @@ namespace FolderComparer
             {
                 if(!list2.Contains(item))  {
                     Console.WriteLine("Different Left: " + item);
-                    var image = new System.Windows.Controls.Image();
-                    BitmapImage bitmap = new BitmapImage(new Uri(@"C:\Users\John\Documents\GitHub\WindowsFolderComparer\FolderComparer\Media-Different.png", UriKind.Relative));
-                    var label = new System.Windows.Controls.Label();
-                    label.Content = item;
-                    image.Source = bitmap;
-                    Grid.SetColumn(image, 0);
-                    Grid.SetColumn(label, 1);
-                    var rowDef = new RowDefinition();
-                    this.gridLeft.RowDefinitions.Add(rowDef);
-                    Grid.SetRow(image, this.gridLeft.RowDefinitions.Count - 1);
-                    Grid.SetRow(label, this.gridLeft.RowDefinitions.Count - 1);
-                    this.gridLeft.Children.Add(image);
-                    this.gridLeft.Children.Add(label);
-                    diffList.Add(item);
+                    leftTree.Items.Add(item);
+                    if (dirs)
+                    {
+                        OneSideDiffs(item, true);
+                    }
                 }
                 else
                 {
@@ -107,10 +99,59 @@ namespace FolderComparer
                 if (!list1.Contains(item))
                 {
                     Console.WriteLine("Different Right: " + item);
-                    diffList.Add(item);
+                    rightTree.Items.Add(item);
+                    if (dirs)
+                    {
+                        OneSideDiffs(item);
+                    }
                 }
             }
             
+        }
+
+        private void OneSideDiffs(string path, bool isLeft = false)
+        {
+            string fullPath = "";
+            if (isLeft)
+            {
+                fullPath = base1 + path;
+            }
+            else
+            {
+                fullPath = base2 + path;
+            }
+
+            string[] files = Directory.GetFiles(fullPath);
+            foreach(var file in files) {
+                if (isLeft)
+                {
+                    leftTree.Items.Add(file.Replace(base1, ""));
+                    rightTree.Items.Add("");
+                }
+                else
+                {
+                    leftTree.Items.Add("");
+                    rightTree.Items.Add(file.Replace(base2, ""));
+                }
+            }
+
+            string[] dirs = Directory.GetDirectories(fullPath);
+            foreach (var dir in dirs)
+            {
+                if (isLeft)
+                {
+                    leftTree.Items.Add(dir.Replace(base1, ""));
+                    rightTree.Items.Add("");
+                    this.OneSideDiffs(dir.Replace(base1, ""), true);
+                }
+                else
+                {
+                    leftTree.Items.Add("");
+                    rightTree.Items.Add(dir.Replace(base2, ""));
+                    this.OneSideDiffs(dir.Replace(base2, ""));
+                }
+            }
+
         }
 
         private string ShowDialog()
@@ -129,6 +170,8 @@ namespace FolderComparer
 
         private void btnRun_Click(object sender, RoutedEventArgs e)
         {
+            this.leftTree.Items.Clear();
+            this.rightTree.Items.Clear();
             base1 = this.tbLeft.Text;
             base2 = this.tbRight.Text;
             Compare(this.tbLeft.Text, this.tbRight.Text);

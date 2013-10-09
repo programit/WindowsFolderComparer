@@ -22,10 +22,7 @@
                 <Button x:Name="btnLeft" Content="Left Path" HorizontalAlignment="Right" Margin="0,36,0,0" Width="61" Click="btnLeftClick" Height="24" VerticalAlignment="Top" Background="#FFAEC6AE"/>
                 <TextBox x:Name="tbLeft" Height="23" Margin="10,37,72,0" Text="C:\Users\John\Desktop\Now You See Me (2013)" VerticalAlignment="Top" Background="#FF676767" Foreground="#FFD1D1D1" BorderBrush="#FF434343" RenderTransformOrigin="0,0" Style="{DynamicResource TextBoxStyle1}" MaxLines="1"/>
                 <Grid Grid.Row="1" Name="gridLeft">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                    <TreeView Name="leftTree"/>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">
@@ -40,10 +37,7 @@
                 <Button x:Name="btnRight" Content="Right Path" Margin="0,36,10,0" Click="btnRightClick" HorizontalAlignment="Right" Width="65" Height="24" VerticalAlignment="Top" Background="#FFB5CDB3"/>
                 <TextBox x:Name="tbRight" Height="23" Margin="0,37,82,0" Text="C:\Users\John\Desktop\Saints.Row.IV.XBOX360-iMARS" VerticalAlignment="Top" Background="#FF676767" Foreground="#FFD1D1D1" BorderBrush="#FF434343" RenderTransformOrigin="0,0" Style="{DynamicResource TextBoxStyle1}" MaxLines="1"/>
                 <Grid Grid.Row="1" Name="gridRight">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                    <TreeView Name="rightTree"/>
                 </Grid>
             </Grid>
         </Grid>

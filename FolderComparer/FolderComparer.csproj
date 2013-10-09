@@ -74,6 +74,7 @@
     <Compile Include="CustomTb.xaml.cs">
       <DependentUpon>CustomTb.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FolderUtils.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
